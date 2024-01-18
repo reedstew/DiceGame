@@ -8,24 +8,37 @@ namespace DiceGame
 {
     internal class Roll
     {
+        List<int> DiceTotal = new List<int>();
+
         // Constructor
         public Roll(int num)
         {
-            int nRolls = num;
+            // nothing here
         }
 
         public void RollLoop(int num)
         {
+            DiceTotal.Clear();
             // instance of random
             Random random = new Random();
 
-            for (int i = 0; i < num; i++)
+            // Loop which rolls both of the dice
+            for (int roll = 0; roll < num; roll++)
             {
-                // Generate a random number between 1 and 6
-                int randnum = random.Next(1, 7);
-                // Give the result
-                System.Console.WriteLine("Roll " + (i + 1) + ": " + randnum);
-            };
+                // generate numbers for the dice
+                int dice1 = random.Next(1, 7);
+                int dice2 = random.Next(1, 7);
+                int sum = dice1 + dice2;
+
+                // for look places a 0 in each place in list
+                if (sum >= 2 && sum <= 12)
+                {
+                    DiceTotal[sum - 2]++;
+                }
+            }   
+            
+                // Print the results of dice rolls
+                System.Console.WriteLine("Results of dice rolls: " + string.Join(", ", DiceTotal));
         }
     }
 }
