@@ -10,19 +10,19 @@ namespace DiceGame
     // Author: Reed Stewart, Section: 001 Group 8, Description: Dice throwing simulator for IS 413 Class.
     internal class Roll
     {
-        private int[] DiceTotal = new int[11];
-
-        // Constructor
+        
         public Roll(int num)
         {
             // nothing here
         }
 
-        public void RollLoop(int num)
+        public int[] RollLoop(int num)
         {
             // DiceTotal.Clear();
             // instance of random
             Random random = new Random();
+
+            int[] DiceTotal = new int[11];
 
             // Loop which rolls both of the dice
             for (int roll = 0; roll < num; roll++)
@@ -40,29 +40,7 @@ namespace DiceGame
                 }
             }
 
-            // Print the introduction to the results
-            System.Console.WriteLine("DICE ROLLING SIMULATION RESULTS");
-            System.Console.WriteLine("Each \"*\" represents 1% of the total number of dice rolls");
-            System.Console.WriteLine($"Total number of rolls = {num}");
-            System.Console.WriteLine(" ");
-
-
-            // Print the results in a histogram
-            int index = 2;
-            while (index <= 12)
-            {
-                // Find the percentage of the combination occurrence. Convert to double and find the number of asterix needed
-                double percentage = (DiceTotal[index - 2] / (double)num) * 100;
-                int numast = (int)Math.Round(percentage);
-                // line up the 2-9 combinations with 10-12 on the printout (for the OCD people)
-                string space = index >= 2 && index <= 9 ? " " : "";
-                // Actually make the histogram
-                System.Console.WriteLine($"{space}{index}: {new string('*', numast)}");
-                index++;
-            }
-            // Give the thahk you message
-            System.Console.WriteLine(" ");
-            System.Console.WriteLine("Thank you for using the dice throwing simulator. Goodbye!");
+            return DiceTotal;
         }
     }
 }
